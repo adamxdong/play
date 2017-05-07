@@ -1,0 +1,28 @@
+package tree.test1;
+
+import java.util.List;
+
+public class HeightOfaKaryTree {
+    static class Node {
+        public int val;
+        List<Node> children;
+        public Node(int val) {
+            this.val = val;
+        }
+    }
+
+    public static void main(String args[] ) throws Exception {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT */
+    }
+    
+    static int findHeight(Node root) {
+        if (root == null) {
+            return 0;
+        }
+        int max = 0;
+        for (Node child : root.children) {
+            max = Math.max(max, findHeight(child));
+        }
+        return 1 + max;
+    }
+}
