@@ -1,0 +1,43 @@
+package tree.test1;
+
+public class KsmallestInABST {
+    static class Node {
+        public int val;
+        public Node left;
+        public Node right;
+        public Node(int val) {
+            this.val = val;
+        }
+    }
+    public static void main(String args[] ) throws Exception {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT */
+        Node root = new Node(9);
+        Node five = new Node(5);
+        Node three = new Node(3);
+        Node seven = new Node(7);
+        Node ten = new Node(10);
+        Node eleven = new Node(11);
+        root.left = five;
+        root.right = ten;
+        five.left = three;
+        five.right = seven;
+        ten.right = eleven;
+        int k = 3;
+        printKsmallestElements(root, k);
+    }
+    static int count = 0;
+    static void printKsmallestElements(Node root, int k) {
+        if (root == null || count >= k) {
+            return;
+        }
+        printKsmallestElements(root.left,  k);
+        if (count < k) { // count has to be checked again
+        	             // because in each recursive call, the count
+        	             // is potentially changed
+            System.out.print(root.val + " ");
+            count = count + 1;
+        }
+        // the following recursive call will be checked on count by the first line above
+        printKsmallestElements(root.right, k);
+    }
+}
